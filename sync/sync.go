@@ -3,6 +3,7 @@ package sync
 import (
 	"context"
 	"fmt"
+	"time"
 
 	"github.com/libp2p/go-libp2p/core/peer"
 	"github.com/pactus-project/pactus/consensus"
@@ -243,6 +244,21 @@ func (sync *synchronizer) sayHello(to peer.ID) {
 }
 
 func (sync *synchronizer) broadcastLoop() {
+	go func() {
+		for {
+			height := sync.state.LastBlockHeight()
+			cert := sync.state.LastCertificate()
+			commited := sync.state.CommittedBlock(height)
+
+			block, _ := commited.ToBlock()
+
+			msg := message.NewBlockAnnounceMessage(block, cert)
+			sync.broadcast(msg)
+			fmt.Printf("block %v announced\n", height)
+			time.Sleep(500 * time.Millisecond)
+		}
+	}()
+
 	for {
 		select {
 		case <-sync.ctx.Done():
