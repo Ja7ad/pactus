@@ -26,6 +26,7 @@ func BlockchainClientCommand(options ...client.Option) *cobra.Command {
 		_BlockchainGetBlockchainInfoCommand(cfg),
 		_BlockchainGetConsensusInfoCommand(cfg),
 		_BlockchainGetAccountCommand(cfg),
+		_BlockchainGetAccountByNumberCommand(cfg),
 		_BlockchainGetValidatorCommand(cfg),
 		_BlockchainGetValidatorByNumberCommand(cfg),
 		_BlockchainGetValidatorAddressesCommand(cfg),
@@ -280,6 +281,48 @@ func _BlockchainGetAccountCommand(cfg *client.Config) *cobra.Command {
 	}
 
 	cmd.PersistentFlags().StringVar(&req.Address, cfg.FlagNamer("Address"), "", "The address of the account to retrieve information for.")
+
+	return cmd
+}
+
+func _BlockchainGetAccountByNumberCommand(cfg *client.Config) *cobra.Command {
+	req := &GetAccountByNumberRequest{}
+
+	cmd := &cobra.Command{
+		Use:   cfg.CommandNamer("GetAccountByNumber"),
+		Short: "GetAccountByNumber RPC client",
+		Long:  "",
+		RunE: func(cmd *cobra.Command, args []string) error {
+			if cfg.UseEnvVars {
+				if err := flag.SetFlagsFromEnv(cmd.Parent().PersistentFlags(), true, cfg.EnvVarNamer, cfg.EnvVarPrefix, "Blockchain"); err != nil {
+					return err
+				}
+				if err := flag.SetFlagsFromEnv(cmd.PersistentFlags(), false, cfg.EnvVarNamer, cfg.EnvVarPrefix, "Blockchain", "GetAccountByNumber"); err != nil {
+					return err
+				}
+			}
+			return client.RoundTrip(cmd.Context(), cfg, func(cc grpc.ClientConnInterface, in iocodec.Decoder, out iocodec.Encoder) error {
+				cli := NewBlockchainClient(cc)
+				v := &GetAccountByNumberRequest{}
+
+				if err := in(v); err != nil {
+					return err
+				}
+				proto.Merge(v, req)
+
+				res, err := cli.GetAccountByNumber(cmd.Context(), v)
+
+				if err != nil {
+					return err
+				}
+
+				return out(res)
+
+			})
+		},
+	}
+
+	cmd.PersistentFlags().Int32Var(&req.Number, cfg.FlagNamer("Number"), 0, "")
 
 	return cmd
 }

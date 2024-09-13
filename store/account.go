@@ -10,9 +10,15 @@ import (
 )
 
 type accountStore struct {
-	db       *leveldb.DB
-	accCache *lru.Cache[crypto.Address, *account.Account]
-	total    int32
+	db        *leveldb.DB
+	numberMap map[int32]*accData
+	accCache  *lru.Cache[crypto.Address, *account.Account]
+	total     int32
+}
+
+type accData struct {
+	Acc  *account.Account
+	Addr crypto.Address
 }
 
 func accountKey(addr crypto.Address) []byte { return append(accountPrefix, addr.Bytes()...) }
@@ -32,9 +38,10 @@ func newAccountStore(db *leveldb.DB, cacheSize int) *accountStore {
 	iter.Release()
 
 	return &accountStore{
-		db:       db,
-		total:    total,
-		accCache: addrLruCache,
+		db:        db,
+		total:     total,
+		numberMap: make(map[int32]*accData),
+		accCache:  addrLruCache,
 	}
 }
 
@@ -66,6 +73,15 @@ func (as *accountStore) account(addr crypto.Address) (*account.Account, error) {
 	as.accCache.Add(addr, acc)
 
 	return acc.Clone(), nil
+}
+
+func (as *accountStore) accountByNumber(num int32) (*account.Account, crypto.Address, error) {
+	acc, ok := as.numberMap[num]
+	if ok {
+		return acc.Acc.Clone(), acc.Addr, nil
+	}
+
+	return nil, crypto.Address{}, ErrNotFound
 }
 
 func (as *accountStore) iterateAccounts(consumer func(crypto.Address, *account.Account) (stop bool)) {
@@ -102,6 +118,7 @@ func (as *accountStore) updateAccount(batch *leveldb.Batch, addr crypto.Address,
 	if !as.hasAccount(addr) {
 		as.total++
 	}
+	as.numberMap[acc.Number()] = &accData{Acc: acc, Addr: addr}
 	as.accCache.Add(addr, acc)
 
 	batch.Put(accountKey(addr), data)

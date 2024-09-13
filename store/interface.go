@@ -88,6 +88,7 @@ type Reader interface {
 	PublicKey(addr crypto.Address) (*bls.PublicKey, error)
 	HasAccount(crypto.Address) bool
 	Account(addr crypto.Address) (*account.Account, error)
+	AccountByNumber(num int32) (*account.Account, crypto.Address, error)
 	TotalAccounts() int32
 	HasValidator(addr crypto.Address) bool
 	ValidatorAddresses() []crypto.Address

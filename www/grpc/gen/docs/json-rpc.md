@@ -73,6 +73,10 @@ Each PAC is equivalent to 1,000,000,000 or 10<sup>9</sup> NanoPACs.
           <span class="rpc-badge"></span> pactus.blockchain.get_account</a>
         </li>
         <li>
+          <a href="#pactus.blockchain.get_account_by_number">
+          <span class="rpc-badge"></span> pactus.blockchain.get_account_by_number</a>
+        </li>
+        <li>
           <a href="#pactus.blockchain.get_validator">
           <span class="rpc-badge"></span> pactus.blockchain.get_validator</a>
         </li>
@@ -1403,7 +1407,7 @@ Parameters has no fields.
     <td class="fw-bold">last_block_time</td>
     <td> numeric</td>
     <td>
-    The last block time as timestamp
+    Timestamp of the last block in Unix format
     </td>
   </tr>
      </tbody>
@@ -1534,6 +1538,78 @@ address.</p>
     <td> string</td>
     <td>
     The address of the account to retrieve information for.
+    </td>
+  </tr>
+  </tbody>
+</table>
+  <h4>Result</h4>
+
+<table class="table table-bordered table-responsive table-sm">
+  <thead>
+    <tr><td>Field</td><td>Type</td><td>Description</td></tr>
+  </thead>
+  <tbody class="table-group-divider">
+  <tr>
+    <td class="fw-bold">account</td>
+    <td> object</td>
+    <td>
+    Detailed information about the account.
+    </td>
+  </tr>
+     <tr>
+        <td class="fw-bold">account.hash</td>
+        <td> string</td>
+        <td>
+        The hash of the account.
+        </td>
+      </tr>
+         <tr>
+        <td class="fw-bold">account.data</td>
+        <td> string</td>
+        <td>
+        The serialized data of the account.
+        </td>
+      </tr>
+         <tr>
+        <td class="fw-bold">account.number</td>
+        <td> numeric</td>
+        <td>
+        The unique number assigned to the account.
+        </td>
+      </tr>
+         <tr>
+        <td class="fw-bold">account.balance</td>
+        <td> numeric</td>
+        <td>
+        The balance of the account in NanoPAC.
+        </td>
+      </tr>
+         <tr>
+        <td class="fw-bold">account.address</td>
+        <td> string</td>
+        <td>
+        The address of the account.
+        </td>
+      </tr>
+         </tbody>
+</table>
+
+### pactus.blockchain.get_account_by_number <span id="pactus.blockchain.get_account_by_number" class="rpc-badge"></span>
+
+<p></p>
+
+<h4>Parameters</h4>
+
+<table class="table table-bordered table-responsive table-sm">
+  <thead>
+    <tr><td>Field</td><td>Type</td><td>Description</td></tr>
+  </thead>
+  <tbody class="table-group-divider">
+  <tr>
+    <td class="fw-bold">number</td>
+    <td> numeric</td>
+    <td>
+    
     </td>
   </tr>
   </tbody>

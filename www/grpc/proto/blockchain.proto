@@ -30,6 +30,8 @@ service Blockchain {
   // address.
   rpc GetAccount(GetAccountRequest) returns (GetAccountResponse);
 
+  rpc GetAccountByNumber(GetAccountByNumberRequest) returns(GetAccountResponse);
+
   // GetValidator retrieves information about a validator based on the provided
   // address.
   rpc GetValidator(GetValidatorRequest) returns (GetValidatorResponse);
@@ -320,4 +322,9 @@ enum VoteType {
   VOTE_PRECOMMIT = 2;
   // Change proposer vote type.
   VOTE_CHANGE_PROPOSER = 3;
+}
+
+
+message GetAccountByNumberRequest {
+  int32 number = 1;
 }

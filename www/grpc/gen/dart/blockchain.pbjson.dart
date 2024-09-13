@@ -342,6 +342,16 @@ const ConsensusInfo$json = const {
 
 /// Descriptor for `ConsensusInfo`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List consensusInfoDescriptor = $convert.base64Decode('Cg1Db25zZW5zdXNJbmZvEhgKB2FkZHJlc3MYASABKAlSB2FkZHJlc3MSFgoGYWN0aXZlGAIgASgIUgZhY3RpdmUSFgoGaGVpZ2h0GAMgASgNUgZoZWlnaHQSFAoFcm91bmQYBCABKAVSBXJvdW5kEiYKBXZvdGVzGAUgAygLMhAucGFjdHVzLlZvdGVJbmZvUgV2b3Rlcw==');
+@$core.Deprecated('Use getAccountByNumberRequestDescriptor instead')
+const GetAccountByNumberRequest$json = const {
+  '1': 'GetAccountByNumberRequest',
+  '2': const [
+    const {'1': 'number', '3': 1, '4': 1, '5': 5, '10': 'number'},
+  ],
+};
+
+/// Descriptor for `GetAccountByNumberRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List getAccountByNumberRequestDescriptor = $convert.base64Decode('ChlHZXRBY2NvdW50QnlOdW1iZXJSZXF1ZXN0EhYKBm51bWJlchgBIAEoBVIGbnVtYmVy');
 const $core.Map<$core.String, $core.dynamic> BlockchainServiceBase$json = const {
   '1': 'Blockchain',
   '2': const [
@@ -351,6 +361,7 @@ const $core.Map<$core.String, $core.dynamic> BlockchainServiceBase$json = const 
     const {'1': 'GetBlockchainInfo', '2': '.pactus.GetBlockchainInfoRequest', '3': '.pactus.GetBlockchainInfoResponse'},
     const {'1': 'GetConsensusInfo', '2': '.pactus.GetConsensusInfoRequest', '3': '.pactus.GetConsensusInfoResponse'},
     const {'1': 'GetAccount', '2': '.pactus.GetAccountRequest', '3': '.pactus.GetAccountResponse'},
+    const {'1': 'GetAccountByNumber', '2': '.pactus.GetAccountByNumberRequest', '3': '.pactus.GetAccountResponse'},
     const {'1': 'GetValidator', '2': '.pactus.GetValidatorRequest', '3': '.pactus.GetValidatorResponse'},
     const {'1': 'GetValidatorByNumber', '2': '.pactus.GetValidatorByNumberRequest', '3': '.pactus.GetValidatorResponse'},
     const {'1': 'GetValidatorAddresses', '2': '.pactus.GetValidatorAddressesRequest', '3': '.pactus.GetValidatorAddressesResponse'},
@@ -385,6 +396,7 @@ const $core.Map<$core.String, $core.Map<$core.String, $core.dynamic>> Blockchain
   '.pactus.GetAccountRequest': GetAccountRequest$json,
   '.pactus.GetAccountResponse': GetAccountResponse$json,
   '.pactus.AccountInfo': AccountInfo$json,
+  '.pactus.GetAccountByNumberRequest': GetAccountByNumberRequest$json,
   '.pactus.GetValidatorRequest': GetValidatorRequest$json,
   '.pactus.GetValidatorResponse': GetValidatorResponse$json,
   '.pactus.GetValidatorByNumberRequest': GetValidatorByNumberRequest$json,
@@ -397,4 +409,4 @@ const $core.Map<$core.String, $core.Map<$core.String, $core.dynamic>> Blockchain
 };
 
 /// Descriptor for `Blockchain`. Decode as a `google.protobuf.ServiceDescriptorProto`.
-final $typed_data.Uint8List blockchainServiceDescriptor = $convert.base64Decode('CgpCbG9ja2NoYWluEj0KCEdldEJsb2NrEhcucGFjdHVzLkdldEJsb2NrUmVxdWVzdBoYLnBhY3R1cy5HZXRCbG9ja1Jlc3BvbnNlEkkKDEdldEJsb2NrSGFzaBIbLnBhY3R1cy5HZXRCbG9ja0hhc2hSZXF1ZXN0GhwucGFjdHVzLkdldEJsb2NrSGFzaFJlc3BvbnNlEk8KDkdldEJsb2NrSGVpZ2h0Eh0ucGFjdHVzLkdldEJsb2NrSGVpZ2h0UmVxdWVzdBoeLnBhY3R1cy5HZXRCbG9ja0hlaWdodFJlc3BvbnNlElgKEUdldEJsb2NrY2hhaW5JbmZvEiAucGFjdHVzLkdldEJsb2NrY2hhaW5JbmZvUmVxdWVzdBohLnBhY3R1cy5HZXRCbG9ja2NoYWluSW5mb1Jlc3BvbnNlElUKEEdldENvbnNlbnN1c0luZm8SHy5wYWN0dXMuR2V0Q29uc2Vuc3VzSW5mb1JlcXVlc3QaIC5wYWN0dXMuR2V0Q29uc2Vuc3VzSW5mb1Jlc3BvbnNlEkMKCkdldEFjY291bnQSGS5wYWN0dXMuR2V0QWNjb3VudFJlcXVlc3QaGi5wYWN0dXMuR2V0QWNjb3VudFJlc3BvbnNlEkkKDEdldFZhbGlkYXRvchIbLnBhY3R1cy5HZXRWYWxpZGF0b3JSZXF1ZXN0GhwucGFjdHVzLkdldFZhbGlkYXRvclJlc3BvbnNlElkKFEdldFZhbGlkYXRvckJ5TnVtYmVyEiMucGFjdHVzLkdldFZhbGlkYXRvckJ5TnVtYmVyUmVxdWVzdBocLnBhY3R1cy5HZXRWYWxpZGF0b3JSZXNwb25zZRJkChVHZXRWYWxpZGF0b3JBZGRyZXNzZXMSJC5wYWN0dXMuR2V0VmFsaWRhdG9yQWRkcmVzc2VzUmVxdWVzdBolLnBhY3R1cy5HZXRWYWxpZGF0b3JBZGRyZXNzZXNSZXNwb25zZRJJCgxHZXRQdWJsaWNLZXkSGy5wYWN0dXMuR2V0UHVibGljS2V5UmVxdWVzdBocLnBhY3R1cy5HZXRQdWJsaWNLZXlSZXNwb25zZRJVChBHZXRUeFBvb2xDb250ZW50Eh8ucGFjdHVzLkdldFR4UG9vbENvbnRlbnRSZXF1ZXN0GiAucGFjdHVzLkdldFR4UG9vbENvbnRlbnRSZXNwb25zZQ==');
+final $typed_data.Uint8List blockchainServiceDescriptor = $convert.base64Decode('CgpCbG9ja2NoYWluEj0KCEdldEJsb2NrEhcucGFjdHVzLkdldEJsb2NrUmVxdWVzdBoYLnBhY3R1cy5HZXRCbG9ja1Jlc3BvbnNlEkkKDEdldEJsb2NrSGFzaBIbLnBhY3R1cy5HZXRCbG9ja0hhc2hSZXF1ZXN0GhwucGFjdHVzLkdldEJsb2NrSGFzaFJlc3BvbnNlEk8KDkdldEJsb2NrSGVpZ2h0Eh0ucGFjdHVzLkdldEJsb2NrSGVpZ2h0UmVxdWVzdBoeLnBhY3R1cy5HZXRCbG9ja0hlaWdodFJlc3BvbnNlElgKEUdldEJsb2NrY2hhaW5JbmZvEiAucGFjdHVzLkdldEJsb2NrY2hhaW5JbmZvUmVxdWVzdBohLnBhY3R1cy5HZXRCbG9ja2NoYWluSW5mb1Jlc3BvbnNlElUKEEdldENvbnNlbnN1c0luZm8SHy5wYWN0dXMuR2V0Q29uc2Vuc3VzSW5mb1JlcXVlc3QaIC5wYWN0dXMuR2V0Q29uc2Vuc3VzSW5mb1Jlc3BvbnNlEkMKCkdldEFjY291bnQSGS5wYWN0dXMuR2V0QWNjb3VudFJlcXVlc3QaGi5wYWN0dXMuR2V0QWNjb3VudFJlc3BvbnNlElMKEkdldEFjY291bnRCeU51bWJlchIhLnBhY3R1cy5HZXRBY2NvdW50QnlOdW1iZXJSZXF1ZXN0GhoucGFjdHVzLkdldEFjY291bnRSZXNwb25zZRJJCgxHZXRWYWxpZGF0b3ISGy5wYWN0dXMuR2V0VmFsaWRhdG9yUmVxdWVzdBocLnBhY3R1cy5HZXRWYWxpZGF0b3JSZXNwb25zZRJZChRHZXRWYWxpZGF0b3JCeU51bWJlchIjLnBhY3R1cy5HZXRWYWxpZGF0b3JCeU51bWJlclJlcXVlc3QaHC5wYWN0dXMuR2V0VmFsaWRhdG9yUmVzcG9uc2USZAoVR2V0VmFsaWRhdG9yQWRkcmVzc2VzEiQucGFjdHVzLkdldFZhbGlkYXRvckFkZHJlc3Nlc1JlcXVlc3QaJS5wYWN0dXMuR2V0VmFsaWRhdG9yQWRkcmVzc2VzUmVzcG9uc2USSQoMR2V0UHVibGljS2V5EhsucGFjdHVzLkdldFB1YmxpY0tleVJlcXVlc3QaHC5wYWN0dXMuR2V0UHVibGljS2V5UmVzcG9uc2USVQoQR2V0VHhQb29sQ29udGVudBIfLnBhY3R1cy5HZXRUeFBvb2xDb250ZW50UmVxdWVzdBogLnBhY3R1cy5HZXRUeFBvb2xDb250ZW50UmVzcG9uc2U=');

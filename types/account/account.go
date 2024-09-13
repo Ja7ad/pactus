@@ -3,7 +3,6 @@ package account
 
 import (
 	"bytes"
-
 	"github.com/pactus-project/pactus/crypto/hash"
 	"github.com/pactus-project/pactus/types/amount"
 	"github.com/pactus-project/pactus/util/encoding"

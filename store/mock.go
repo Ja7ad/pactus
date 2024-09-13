@@ -143,14 +143,14 @@ func (m *MockStore) Account(addr crypto.Address) (*account.Account, error) {
 	return nil, fmt.Errorf("not found")
 }
 
-func (m *MockStore) AccountByNumber(number int32) (*account.Account, error) {
+func (m *MockStore) AccountByNumber(number int32) (*account.Account, crypto.Address, error) {
 	for _, v := range m.Accounts {
 		if v.Number() == number {
-			return v.Clone(), nil
+			return v.Clone(), crypto.Address{}, nil
 		}
 	}
 
-	return nil, fmt.Errorf("not found")
+	return nil, crypto.Address{}, fmt.Errorf("not found")
 }
 
 func (m *MockStore) UpdateAccount(addr crypto.Address, acc *account.Account) {

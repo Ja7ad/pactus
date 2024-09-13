@@ -532,7 +532,7 @@ pub struct GetBlockchainInfoResponse {
     /// Lowest-height block stored (only present if pruning is enabled)
     #[prost(uint32, tag="9")]
     pub pruning_height: u32,
-    /// The last block time as timestamp
+    /// Timestamp of the last block in Unix format
     #[prost(int64, tag="10")]
     pub last_block_time: i64,
 }
@@ -704,6 +704,12 @@ pub struct ConsensusInfo {
     /// List of votes in the consensus instance.
     #[prost(message, repeated, tag="5")]
     pub votes: ::prost::alloc::vec::Vec<VoteInfo>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetAccountByNumberRequest {
+    #[prost(int32, tag="1")]
+    pub number: i32,
 }
 /// Enumeration for verbosity levels when requesting block information.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]

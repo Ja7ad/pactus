@@ -72,6 +72,10 @@ Each PAC is equivalent to 1,000,000,000 or 10<sup>9</sup> NanoPACs.
           <span class="rpc-badge"></span> GetAccount</a>
         </li>
         <li>
+          <a href="#pactus.Blockchain.GetAccountByNumber">
+          <span class="rpc-badge"></span> GetAccountByNumber</a>
+        </li>
+        <li>
           <a href="#pactus.Blockchain.GetValidator">
           <span class="rpc-badge"></span> GetValidator</a>
         </li>
@@ -1402,7 +1406,7 @@ Message has no fields.
     <td class="fw-bold">last_block_time</td>
     <td> int64</td>
     <td>
-    The last block time as timestamp
+    Timestamp of the last block in Unix format
     </td>
   </tr>
      </tbody>
@@ -1533,6 +1537,78 @@ address.</p>
     <td> string</td>
     <td>
     The address of the account to retrieve information for.
+    </td>
+  </tr>
+  </tbody>
+</table>
+  <h4>GetAccountResponse <span class="badge text-bg-warning fs-6 align-top">Response</span></h4>
+
+<table class="table table-bordered table-responsive table-sm">
+  <thead>
+    <tr><td>Field</td><td>Type</td><td>Description</td></tr>
+  </thead>
+  <tbody class="table-group-divider">
+  <tr>
+    <td class="fw-bold">account</td>
+    <td> AccountInfo</td>
+    <td>
+    Detailed information about the account.
+    </td>
+  </tr>
+     <tr>
+        <td class="fw-bold">account.hash</td>
+        <td> string</td>
+        <td>
+        The hash of the account.
+        </td>
+      </tr>
+         <tr>
+        <td class="fw-bold">account.data</td>
+        <td> string</td>
+        <td>
+        The serialized data of the account.
+        </td>
+      </tr>
+         <tr>
+        <td class="fw-bold">account.number</td>
+        <td> int32</td>
+        <td>
+        The unique number assigned to the account.
+        </td>
+      </tr>
+         <tr>
+        <td class="fw-bold">account.balance</td>
+        <td> int64</td>
+        <td>
+        The balance of the account in NanoPAC.
+        </td>
+      </tr>
+         <tr>
+        <td class="fw-bold">account.address</td>
+        <td> string</td>
+        <td>
+        The address of the account.
+        </td>
+      </tr>
+         </tbody>
+</table>
+
+### GetAccountByNumber <span id="pactus.Blockchain.GetAccountByNumber" class="rpc-badge"></span>
+
+<p></p>
+
+<h4>GetAccountByNumberRequest <span class="badge text-bg-info fs-6 align-top">Request</span></h4>
+
+<table class="table table-bordered table-responsive table-sm">
+  <thead>
+    <tr><td>Field</td><td>Type</td><td>Description</td></tr>
+  </thead>
+  <tbody class="table-group-divider">
+  <tr>
+    <td class="fw-bold">number</td>
+    <td> int32</td>
+    <td>
+    
     </td>
   </tr>
   </tbody>
